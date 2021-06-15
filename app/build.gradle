@@ -1,0 +1,153 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.vickykdv.themoviekoin"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        buildTypes {
+            release {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                buildConfigField 'String', 'baseUrl', '"https://api.themoviedb.org/3/"'
+                buildConfigField 'String', 'imageUrl', '"https://image.tmdb.org/t/p/original/"'
+                buildConfigField 'String', 'apiKey', '"c9ecf098799ce6665df245943371c41e"'
+            }
+            debug {
+                buildConfigField 'String', 'baseUrl', '"https://api.themoviedb.org/3/"'
+                buildConfigField 'String', 'imageUrl', '"https://image.tmdb.org/t/p/original/"'
+                buildConfigField 'String', 'apiKey', '"c9ecf098799ce6665df245943371c41e"'
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+ext {
+    kotlin_version = "1.4.21"
+    kotlin_version_std_lib = "1.5.0"
+    appcompat_version = "1.2.0"
+    core_ktx_version = "1.3.2"
+    ui_ktx_version = "2.3.3"
+    constraint_version = "2.0.4"
+    legacy_support_version = "1.0.0"
+    cardview_version = "1.0.0"
+    recyclerview_version = "1.1.0"
+    material_version = "1.3.0"
+
+    lifecycle_version = "2.3.0"
+    glide_version = "4.11.0"
+    shimmer_version = "0.5.0"
+
+    dagger_version = "2.28-alpha"
+    hilt_lifecyc_dagger_version = "1.0.0-alpha02"
+
+    retrofit2_version = "2.9.0"
+    okhttp_version = "4.9.0"
+
+    rxandroid_version = "2.1.1"
+    rxjava_version = "2.2.10"
+    rxbinding_version = "3.0.0"
+    retrofit2_rx_version = "2.6.1"
+
+    room_version = "2.2.5"
+    paging_version = "2.1.2"
+    koin_version= "3.0.2"
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version_std_lib"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
+
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$ui_ktx_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$ui_ktx_version"
+
+    //Dependencies Injection
+//    implementation "com.google.dagger:hilt-android:$dagger_version"
+//    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+//    kapt "com.google.dagger:hilt-android-compiler:$dagger_version"
+//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_lifecyc_dagger_version"
+//    kapt "androidx.hilt:hilt-compiler:$hilt_lifecyc_dagger_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
+
+    //For HTTP Network
+    implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit2_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_rx_version"
+
+    implementation "com.facebook.shimmer:shimmer:$shimmer_version"
+
+    implementation "androidx.cardview:cardview:$cardview_version"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+
+    //For Image Loader
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+
+    //For Lifecycle
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    //For Paging
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    implementation "androidx.paging:paging-rxjava2-ktx:$paging_version"
+
+    //For Database
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+
+    //For Unit Test
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.1.0'
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+    testImplementation 'androidx.test:core:1.3.0'
+    androidTestImplementation 'androidx.test:rules:1.3.0'
+
+    // For Preference
+    implementation 'com.pixplicity.easyprefs:library:1.9.0'
+
+    //For Dimens
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+}
